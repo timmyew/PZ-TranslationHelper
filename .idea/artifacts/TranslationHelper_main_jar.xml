@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="TranslationHelper.main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TranslationHelper_main_jar</output-path>
+    <root id="root">
+      <element id="module-output" name="TranslationHelper.main" />
+    </root>
+  </artifact>
+</component>
