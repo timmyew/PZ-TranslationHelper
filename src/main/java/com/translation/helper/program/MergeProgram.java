@@ -31,7 +31,7 @@ public class MergeProgram extends AbstractProgram {
                 MergeOptions.builder()
                         .newFilePath(getRequiredOptionValue(args, OptionEnum.NEW_FILE))
                         .oldFilePath(getRequiredOptionValue(args, OptionEnum.OLD_FILE))
-                        .mergedOutputFilePath(getRequiredOptionValue(args, OptionEnum.MERGED_OUTPUT_FILE))
+                        .mergedOutputFilePath(getOptionalOptionValue(args, OptionEnum.MERGED_OUTPUT_FILE))
                         .doMetaData(OptionUtils.isOptionExistingFile(args, OptionEnum.META_DATA))
                         .doSort(OptionUtils.isOptionExistingFile(args, OptionEnum.SORT))
                         .build()
@@ -59,5 +59,16 @@ public class MergeProgram extends AbstractProgram {
         return OptionUtils.tryGetOptionValue(
                 OptionUtils.getOptionString(args, option)
         );
+    }
+
+    private String getOptionalOptionValue(List<String> args, OptionEnum option) {
+        String result = "";
+
+        if (OptionUtils.isOptionExistingFile(args, option)) {
+            result = OptionUtils.tryGetOptionValue(
+                    OptionUtils.getOptionString(args, option)
+            );
+        }
+        return result;
     }
 }

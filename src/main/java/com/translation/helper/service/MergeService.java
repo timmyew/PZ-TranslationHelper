@@ -25,6 +25,9 @@ public class MergeService {
         if (options.isDoSort())
             sortAttributesFaster(mergedFile);
 
+        if (!options.getMergedOutputFilePath().isBlank())
+            FileUtils.writeFile(mergedFile, options.getMergedOutputFilePath());
+
         return MergeModel.builder()
                 .oldFile(oldFile)
                 .newFile(newFile)
@@ -65,6 +68,8 @@ public class MergeService {
                 }
             }
         }
+
+        mergedFile.replaceAll(String::trim);
         return mergedFile;
     }
 
@@ -114,7 +119,7 @@ public class MergeService {
             }
         }
 
-        attributes.subList(getStartPos(attributes), getEndPos(attributes)).sort(new AlphapetComparator());
+        attributes.subList(getStartPos(attributes), getEndPos(attributes) + 1).sort(new AlphapetComparator());
 
         for (int i = lineBreakIndexList.size() - 1; i >= 0; i--) {
             attributes.add(lineBreakIndexList.get(i), "");

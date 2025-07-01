@@ -20,9 +20,6 @@ public class AlphapetComparator implements Comparator<String> {
             if (o1.charAt(i) < o2.charAt(i)) {
                 return LOWER;
             }
-            else if (o1.charAt(i) == o2.charAt(i)) {
-                return EQUAL;
-            }
             else if (o1.charAt(i) > o2.charAt(i)) {
                 return HIGHER;
             }
